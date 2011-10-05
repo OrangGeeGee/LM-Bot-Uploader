@@ -14,6 +14,8 @@ public class Configs {
 	public static final String KEY_COOKIE = "userLoginCookie";
 	public static final String KEY_OUTPUT_DIR = "torrentWatchDirectory";
 	public static final String KEY_FILES_DIR = "extractedTorrentsDirectory";
+	public static final String KEY_UNRAR_PATH = "pathToUnpacker";
+	public static final String DEFAULT_UNRAR_PATH = "\"C:\\Program Files\\WinRAR\\UnRAR.exe\" x -u %1s %2s";
 	
 	
 	private String filename = "config.ini";
@@ -53,6 +55,10 @@ public class Configs {
 				//ini.putComment(key, comment);
 			}
 			
+			if(ini.get(SECTION_PATHS, KEY_UNRAR_PATH)==null) {
+				ini.add(SECTION_PATHS, KEY_UNRAR_PATH, DEFAULT_UNRAR_PATH);
+			}
+
 			if(ini.get(SECTION_PATHS, KEY_OUTPUT_DIR)==null) {
 				ini.add(SECTION_PATHS, KEY_OUTPUT_DIR, "");
 			}
@@ -60,7 +66,7 @@ public class Configs {
 			if(ini.get(SECTION_LM, KEY_COOKIE)==null) {
 				ini.add(SECTION_LM, KEY_COOKIE, "");
 			}
-			
+
 			ini.store();
 		}
 	}
